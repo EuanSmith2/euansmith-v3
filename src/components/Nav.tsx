@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -9,6 +10,7 @@ const LINKS = [
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -43,6 +45,9 @@ export default function Nav() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  // the single-page nav only belongs on the home route; /cv has its own
+  if (pathname !== "/") return null;
 
   return (
     <header

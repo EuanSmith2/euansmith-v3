@@ -9,67 +9,83 @@ import { Reveal, Item } from "./Section";
 
 type Tier = {
   name: string;
-  price: number;
-  prefix: string;
-  suffix?: string;
+  price: number; // the "from" anchor — the count-up target
   rows: string[];
   featured?: boolean;
 };
 
+// Anchored to the cold-call pricing: Basic €400–600 · Booking/Menu €650–900 ·
+// E-commerce €900–1,400. "From €X" invites the inquiry — the real number moves
+// with the job, which is the point.
 const TIERS: Tier[] = [
   {
-    name: "Starter",
-    price: 120,
-    prefix: "From €",
-    rows: ["Landing page", "Contact form", "Mobile-first", "100 Lighthouse score"],
+    name: "Basic",
+    price: 400,
+    rows: [
+      "4–5 hand-coded pages",
+      "Contact form + click-to-call",
+      "Mobile-first, 100 Lighthouse",
+      "Google-ready — SEO + sitemap",
+      "You own the code outright",
+    ],
   },
   {
-    name: "Business",
-    price: 170,
-    prefix: "From €",
-    rows: ["Multi-page", "Booking / menu", "SEO + sitemap", "Mobile-first", "100 Lighthouse score"],
+    name: "Booking / Menu",
+    price: 650,
     featured: true,
+    rows: [
+      "Everything in Basic",
+      "Online booking or live menu",
+      "Gallery · opening hours · maps",
+      "Rich Google results (structured data)",
+      "Edit it yourself — optional CMS",
+    ],
   },
   {
-    name: "Maintenance",
-    price: 20,
-    prefix: "€",
-    suffix: "/mo",
-    rows: ["Updates + uptime", "Priority support", "Monthly report"],
+    name: "Online Store",
+    price: 900,
+    rows: [
+      "Everything in Booking",
+      "Product catalogue + cart",
+      "Card payments built in (Stripe)",
+      "Orders + stock management",
+      "Customer accounts / login",
+    ],
   },
 ];
 
 /** Price counts up once on first viewport entry (IntersectionObserver via
  *  useInView triggerOnce — never re-fires). */
-function Price({ tier }: { tier: Tier }) {
+function Price({ value }: { value: number }) {
   const num = useRef<HTMLSpanElement>(null);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.6 });
 
   useEffect(() => {
     if (!inView || !num.current) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      num.current.textContent = String(tier.price);
+      num.current.textContent = String(value);
       return;
     }
     const counter = { v: 0 };
     gsap.to(counter, {
-      v: tier.price,
+      v: value,
       duration: 1.1,
       ease: "power3.out",
       onUpdate: () => {
         num.current!.textContent = String(Math.round(counter.v));
       },
     });
-  }, [inView, tier.price]);
+  }, [inView, value]);
 
   return (
-    <p ref={ref} className="font-mono text-3xl font-bold text-fg">
-      {tier.prefix}
+    <p className="font-mono text-3xl font-bold text-fg">
+      <span className="text-lg text-muted">from </span>€
       {/* tabular figures reserve width — no shift while counting */}
-      <span ref={num} className="tabular-nums">
-        0
+      <span ref={ref}>
+        <span ref={num} className="tabular-nums">
+          0
+        </span>
       </span>
-      {tier.suffix}
     </p>
   );
 }
@@ -83,7 +99,8 @@ export default function Services() {
         services
       </SplitHeading>
       <p className="mt-4 max-w-xl text-muted">
-        Hand-coded. Fast. Yours outright — no platform fees, no lock-in.
+        Hand-coded. Fast. Yours outright — no platform fees, no lock-in. One-off,
+        not a subscription.
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -104,7 +121,7 @@ export default function Services() {
             <h3 className="font-mono text-sm uppercase tracking-widest text-muted">
               {tier.name}
             </h3>
-            <Price tier={tier} />
+            <Price value={tier.price} />
             <ul className="space-y-2.5 text-sm text-fg/85">
               {tier.rows.map((r) => (
                 <li key={r} className="flex gap-2.5">
@@ -119,7 +136,13 @@ export default function Services() {
         ))}
       </div>
 
-      <Item className="mt-10">
+      <p className="mt-8 max-w-2xl font-mono text-xs leading-relaxed text-muted">
+        + €30–50/mo optional — hosting, updates &amp; priority support. Every job
+        is different, so the real number depends on what you need; the quote is
+        free and there&apos;s no obligation.
+      </p>
+
+      <Item className="mt-8">
         <a
           href="#contact"
           className="group inline-flex min-h-11 items-center gap-2 border border-accent/40 bg-accent/10 px-6 py-3 font-mono text-sm text-accent transition-colors duration-300 hover:bg-accent/20"

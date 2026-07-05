@@ -1,12 +1,15 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 /** 2px read-progress bar above the nav. Raw rAF, no library; scaleX keeps
- *  it compositor-only. */
+ *  it compositor-only. Home route only — the CV page prints clean. */
 export default function ScrollProgress() {
+  const pathname = usePathname();
   const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (pathname !== "/") return;
     let raf = 0;
     const loop = () => {
       const max = document.body.scrollHeight - window.innerHeight;
@@ -16,7 +19,9 @@ export default function ScrollProgress() {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [pathname]);
+
+  if (pathname !== "/") return null;
 
   return (
     <div

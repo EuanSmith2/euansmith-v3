@@ -1,13 +1,16 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const INTERACTIVE = "a, button, [role='button'], input, textarea, label, summary";
 
 export default function Cursor() {
+  const pathname = usePathname();
   const dot = useRef<HTMLDivElement>(null);
   const ring = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (pathname !== "/") return; // custom cursor only on the home experience
     const fine = window.matchMedia("(pointer: fine)").matches;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || still) return;
@@ -50,7 +53,9 @@ export default function Cursor() {
       cancelAnimationFrame(raf);
       document.documentElement.classList.remove("cursor-live");
     };
-  }, []);
+  }, [pathname]);
+
+  if (pathname !== "/") return null;
 
   return (
     <div aria-hidden className="hidden [@media(pointer:fine)]:block">

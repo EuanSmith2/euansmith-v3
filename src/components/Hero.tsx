@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import { ArrowDown, ArrowRight, FileText } from "lucide-react";
 import { EASE } from "@/lib/utils";
 
 const HeroField = dynamic(() => import("./HeroField"), { ssr: false });
@@ -144,7 +144,7 @@ export default function Hero() {
             href="/cv"
             className="group inline-flex min-h-11 items-center gap-2 border border-line px-5 py-3 text-sm text-muted transition-colors duration-300 hover:text-fg"
           >
-            [ cv <Download className="size-4" /> ]
+            [ cv <FileText className="size-4" /> ]
           </a>
         </motion.div>
       </div>

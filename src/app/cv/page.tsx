@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import PrintButton from "./PrintButton";
 
 export const metadata: Metadata = {
-  title: "CV — Euan Smith",
+  // template in layout adds "— Euan Smith"; keep this bare to avoid doubling
+  title: "CV",
   description: "Euan Smith — Web Developer & Cybersecurity Student, Dublin",
   robots: { index: false, follow: false },
 };
