@@ -29,9 +29,9 @@ export default function Nav() {
     >
       <a
         href="#"
-        className="flex items-center gap-1 text-fg/80 transition-colors duration-300 hover:text-accent"
+        className="text-fg/70 transition-colors duration-300 hover:text-fg"
       >
-        es<span className="blink text-accent">█</span>
+        euan smith
       </a>
       <nav aria-label="site navigation">
         <ul className="flex gap-6">

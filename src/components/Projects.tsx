@@ -40,29 +40,32 @@ export default function Projects() {
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
         <Card>
           <h3 className="font-mono text-xl font-semibold text-fg">NZT-48</h3>
-          <p className="text-sm leading-relaxed text-muted">
-            Personal AI orchestration system. 7 specialised agents, Telegram
-            interface, Claude Code headless backend, Obsidian vault, proactive
-            7:30am brief.
-          </p>
+          <ul className="space-y-1 font-mono text-xs text-muted">
+            <li>7 specialised AI agents (briefing · research · business · TTS)</li>
+            <li>Obsidian vault memory structure + daily knowledge capture</li>
+            <li>Custom Telegram bot → Claude Code remote control</li>
+            <li>Automated 07:30 brief via push notification</li>
+            <li>Animated terminal feed displaying live agent activity</li>
+            <li>Private config overlay — gitignored secrets, clean public repo</li>
+          </ul>
           <NztTerminal />
-          <Pills items={["Python", "Claude", "Telegram", "SQLite"]} />
-          <div className="mt-auto flex gap-5">
+          <Pills items={["Python", "Claude API", "Telegram", "SQLite", "MCP"]} />
+          <div className="mt-auto flex gap-3">
             <a
               href="https://github.com/EuanSmith2/NZT-48"
-              className={linkCls}
+              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHubIcon className="size-4" /> GitHub
+              <GitHubIcon className="size-3.5" /> GitHub
             </a>
             <a
               href="https://github.com/EuanSmith2/NZT-48#readme"
-              className={linkCls}
+              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FileText className="size-4" /> README
+              <FileText className="size-3.5" /> README
             </a>
           </div>
         </Card>
@@ -71,33 +74,45 @@ export default function Projects() {
           <h3 className="font-mono text-xl font-semibold text-fg">
             Forged Websites
           </h3>
-          <p className="text-sm leading-relaxed text-muted">
-            Hand-coded sites for Dublin SMEs. No templates. Fast, clean, owned
-            outright.
-          </p>
+          <ul className="space-y-1 font-mono text-xs text-muted">
+            <li>Hand-coded HTML · CSS · vanilla JS — zero frameworks, zero builders</li>
+            <li>Semantic markup + structured data (JSON-LD) for SEO</li>
+            <li>100/100 Lighthouse across performance · a11y · SEO · best practices</li>
+            <li>Sub-100kb page weight, zero WordPress dependency</li>
+            <li>Full project ownership transferred — no ongoing platform fees</li>
+          </ul>
           <div className="rounded-sm border border-line bg-bg p-4 font-mono text-xs leading-6 text-code/90">
             <p>lighthouse --all ▸ 100</p>
             <p>page weight ▸ &lt;100kb</p>
             <p>wordpress ▸ not found</p>
           </div>
-          <Pills items={["HTML", "CSS", "JS", "No builders"]} />
-          <div className="mt-auto flex gap-5">
-            <a href="#services" className={linkCls}>
-              Portfolio
+          <Pills items={["HTML", "CSS", "JS", "JSON-LD", "No builders"]} />
+          <div className="mt-auto flex gap-3">
+            <a
+              href="#services"
+              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
+            >
+              Pricing
             </a>
-            <a href="#contact" className={`${linkCls} text-accent`}>
-              Get a quote <ArrowRight className="size-4" />
+            <a
+              href="#contact"
+              className="inline-flex min-h-9 items-center gap-1.5 border border-accent/40 bg-accent/10 px-3 py-2 font-mono text-xs text-accent transition-colors duration-300 hover:bg-accent/20"
+            >
+              Get a quote <ArrowRight className="size-3.5" />
             </a>
           </div>
         </Card>
 
         <Card>
           <h3 className="font-mono text-xl font-semibold text-dim">
-            coming soon<span className="blink text-accent">█</span>
+            coming soon
           </h3>
           <p className="text-sm leading-relaxed text-dim">
-            Slot reserved. Something is always being built.
+            Slot reserved. Something is always in progress.
           </p>
+          <div className="mt-auto border border-dashed border-dim/40 px-3 py-2 font-mono text-xs text-dim/60">
+            — in build —
+          </div>
         </Card>
       </div>
     </Reveal>

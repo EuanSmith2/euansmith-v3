@@ -19,23 +19,23 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Starter",
-    price: 400,
+    price: 120,
     prefix: "From €",
-    rows: ["Landing page", "Contact form", "Mobile-first"],
+    rows: ["Landing page", "Contact form", "Mobile-first", "100 Lighthouse score"],
   },
   {
     name: "Business",
-    price: 650,
+    price: 170,
     prefix: "From €",
-    rows: ["Booking / menu", "SEO-ready", "Mobile-first"],
+    rows: ["Multi-page", "Booking / menu", "SEO + sitemap", "Mobile-first", "100 Lighthouse score"],
     featured: true,
   },
   {
     name: "Maintenance",
-    price: 30,
+    price: 20,
     prefix: "€",
-    suffix: "–50/mo",
-    rows: ["Updates + uptime", "Priority support"],
+    suffix: "/mo",
+    rows: ["Updates + uptime", "Priority support", "Monthly report"],
   },
 ];
 

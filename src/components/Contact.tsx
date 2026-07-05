@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
-import { GitHubIcon, TikTokIcon } from "./icons";
+import { GitHubIcon, TikTokIcon, LinkedInIcon } from "./icons";
 
 // Formspree endpoint lives in env — never an email address in source.
 const ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
@@ -99,25 +99,42 @@ export default function Contact() {
         )}
       </Item>
 
-      <Item className="mt-12 flex gap-6">
-        <a
-          href="https://github.com/EuanSmith2"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub — EuanSmith2"
-          className="flex min-h-11 min-w-11 items-center justify-center text-muted transition-colors duration-300 hover:text-accent"
-        >
-          <GitHubIcon className="size-6" />
-        </a>
-        <a
-          href="https://www.tiktok.com/@euan_smith"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="TikTok — @euan_smith"
-          className="flex min-h-11 min-w-11 items-center justify-center text-muted transition-colors duration-300 hover:text-accent"
-        >
-          <TikTokIcon className="size-6" />
-        </a>
+      <Item className="mt-12 grid grid-cols-3 gap-4 sm:max-w-xl">
+        {[
+          {
+            href: "https://github.com/EuanSmith2",
+            label: "GitHub",
+            handle: "EuanSmith2",
+            icon: <GitHubIcon className="size-5" />,
+          },
+          {
+            href: "https://www.linkedin.com/in/euan-smith",
+            label: "LinkedIn",
+            handle: "euan-smith",
+            icon: <LinkedInIcon className="size-5" />,
+          },
+          {
+            href: "https://www.tiktok.com/@euan_smith",
+            label: "TikTok",
+            handle: "@euan_smith",
+            icon: <TikTokIcon className="size-5" />,
+          },
+        ].map(({ href, label, handle, icon }) => (
+          <a
+            key={href}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${label} — ${handle}`}
+            className="group flex flex-col gap-2.5 border border-line bg-card p-4 transition-colors duration-300 hover:border-accent/40 hover:bg-accent/[0.03]"
+          >
+            <span className="text-muted transition-colors duration-300 group-hover:text-accent">
+              {icon}
+            </span>
+            <span className="font-mono text-xs text-muted">{label}</span>
+            <span className="font-mono text-[11px] text-dim">{handle}</span>
+          </a>
+        ))}
       </Item>
 
       <footer className="mt-20 border-t border-line pt-6 font-mono text-xs text-dim">

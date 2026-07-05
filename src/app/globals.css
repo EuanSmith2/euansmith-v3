@@ -111,12 +111,7 @@ body {
 }
 .border-trace:hover::before {
   opacity: 1;
-  animation: trace 600ms var(--ease-expo) forwards;
-}
-@keyframes trace {
-  to {
-    --trace: 360deg;
-  }
+  /* --trace is driven by JS cursor position in Cursor.tsx */
 }
 
 /* splitting.js char reveal — staggered via --char-index */

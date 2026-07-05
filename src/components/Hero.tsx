@@ -141,8 +141,7 @@ export default function Hero() {
             [ hire me <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" /> ]
           </a>
           <a
-            href="/euan-smith-cv.pdf"
-            download
+            href="/cv"
             className="group inline-flex min-h-11 items-center gap-2 border border-line px-5 py-3 text-sm text-muted transition-colors duration-300 hover:text-fg"
           >
             [ cv <Download className="size-4" /> ]

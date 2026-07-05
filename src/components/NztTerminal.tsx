@@ -43,9 +43,6 @@ export default function NztTerminal() {
             {line}
           </p>
         ))}
-        <p>
-          <span className="blink text-accent">█</span>
-        </p>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import Image from "next/image";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
+import { TryHackMeIcon } from "./icons";
 
-const FACTS = [
-  "19, Dublin. Building things that ship.",
-  "Hand-codes websites for local businesses — no templates, no builders, no WordPress.",
-  "Built NZT-48: 7 specialised agents, Telegram interface, proactive 07:30 brief every morning.",
-  "BSc Cybersecurity & Digital Forensics, TU Dublin — Sept 2026.",
-  "Active on TryHackMe, chasing ISC2 CC cert.",
+const SKILLS = [
+  { label: "Languages", value: "HTML · CSS · JS · TypeScript · Python" },
+  { label: "Web", value: "Next.js · Tailwind · Framer Motion · GSAP · Three.js" },
+  { label: "AI / Automation", value: "Claude API · MCP servers · Telegram Bot API · SQLite" },
+  { label: "Security", value: "TryHackMe Pre-Security · ISC2 CC (in progress) · Linux CLI" },
+  { label: "Tooling", value: "Git · Vercel · Cloudflare · Obsidian · Playwright" },
 ];
 
 export default function About({
@@ -32,20 +33,41 @@ export default function About({
               className="size-40 shrink-0 rounded-sm border border-line object-cover grayscale transition-[filter] duration-500 hover:grayscale-0 sm:size-52"
               priority={false}
             />
-            <ul className="space-y-4 text-[length:var(--text-lead)] leading-relaxed text-fg/90">
-              {FACTS.map((f) => (
-                <li key={f} className="flex gap-3">
-                  <span aria-hidden className="mt-1 select-none font-mono text-accent">
-                    ▸
-                  </span>
-                  {f}
-                </li>
-              ))}
-            </ul>
+            <div className="space-y-5">
+              <p className="text-[length:var(--text-lead)] leading-relaxed text-fg/90">
+                19. Dublin. Self-taught — started with HTML at 14, now shipping AI systems and hand-coded sites for local businesses. BSc Cybersecurity &amp; Digital Forensics at TU Dublin from Sept 2026.
+              </p>
+              <dl className="space-y-2">
+                {SKILLS.map(({ label, value }) => (
+                  <div key={label} className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
+                    <dt className="w-28 shrink-0 font-mono text-xs text-muted">{label}</dt>
+                    <dd className="font-mono text-xs text-fg/70">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </Item>
 
-        <Item className="overflow-x-auto">{contributions}</Item>
+        <Item className="flex flex-col gap-6 overflow-x-auto">
+          {contributions}
+          <a
+            href="https://tryhackme.com/p/EuanSmith"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block w-fit border border-line bg-card p-4 transition-colors duration-300 hover:border-accent/40"
+          >
+            <div className="mb-3 flex items-center gap-2">
+              <TryHackMeIcon className="size-4 text-[#e8412a] transition-colors duration-300 group-hover:text-[#ff5f4a]" />
+              <span className="font-mono text-xs text-muted">TryHackMe</span>
+            </div>
+            <div className="space-y-1 font-mono text-xs">
+              <p className="text-fg">EuanSmith</p>
+              <p className="text-muted">Pre-Security path</p>
+              <p className="text-dim">active · 2026</p>
+            </div>
+          </a>
+        </Item>
       </div>
     </Reveal>
   );
