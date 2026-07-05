@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords: [
     "web developer Dublin",
     "hand-coded websites",
-    "Forged Websites",
+    "AI systems developer",
     "NZT-48",
     "Euan Smith",
   ],

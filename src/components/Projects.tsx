@@ -77,46 +77,66 @@ export default function Projects() {
 
         <Card>
           <h3 className="font-mono text-xl font-semibold text-fg">
-            Forged Websites
+            EDMO — factcheck automation
+          </h3>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-accent/80">
+            European Digital Media Observatory · DCU · in production
+          </p>
+          <ul className="space-y-1 font-mono text-xs text-muted">
+            <li>Scrapes TheJournal.ie factchecks → Claude summaries → publishes to edmohub.ie via WordPress REST API</li>
+            <li>Cron-scheduled, unattended — runs 1st &amp; 15th of the month</li>
+            <li>Built end to end and handed to EDMO&apos;s team for staff rollout</li>
+            <li>My first production system running inside a real EU organisation</li>
+          </ul>
+          <div className="rounded-sm border border-line bg-bg p-4 font-mono text-xs leading-6 text-code/90">
+            <p>source ▸ thejournal.ie/factcheck</p>
+            <p>summarise ▸ claude</p>
+            <p>publish ▸ edmohub.ie (wp-rest)</p>
+          </div>
+          <Pills items={["Python", "Claude API", "WordPress REST", "Cron"]} />
+          <div className="mt-auto flex gap-3">
+            <a
+              href="https://edmohub.ie"
+              className={"inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              edmohub.ie <ArrowRight className="size-3.5" />
+            </a>
+          </div>
+        </Card>
+
+        <Card>
+          <h3 className="font-mono text-xl font-semibold text-fg">
+            client websites
           </h3>
           <ul className="space-y-1 font-mono text-xs text-muted">
-            <li>Hand-coded HTML · CSS · vanilla JS — zero frameworks, zero builders</li>
-            <li>Semantic markup + structured data (JSON-LD) for SEO</li>
+            <li>Hand-coded for local businesses — no page builders, no WordPress, no templates</li>
             <li>100/100 Lighthouse across performance · a11y · SEO · best practices</li>
-            <li>Sub-100kb page weight, zero WordPress dependency</li>
-            <li>Full project ownership transferred — no ongoing platform fees</li>
+            <li>Sub-100kb pages, semantic markup, JSON-LD structured data</li>
+            <li>Full ownership handed over — the client owns the code, no platform fees</li>
           </ul>
           <div className="rounded-sm border border-line bg-bg p-4 font-mono text-xs leading-6 text-code/90">
             <p>lighthouse --all ▸ 100</p>
             <p>page weight ▸ &lt;100kb</p>
             <p>wordpress ▸ not found</p>
           </div>
-          <Pills items={["HTML", "CSS", "JS", "JSON-LD", "No builders"]} />
+          <Pills items={["HTML", "CSS", "JS", "Next.js", "JSON-LD"]} />
           <div className="mt-auto flex gap-3">
             <a
-              href="#services"
+              href="https://ayeishalhaine.com"
               className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Pricing
+              live site <ArrowRight className="size-3.5" />
             </a>
             <a
               href="#contact"
               className="inline-flex min-h-9 items-center gap-1.5 border border-accent/40 bg-accent/10 px-3 py-2 font-mono text-xs text-accent transition-colors duration-300 hover:bg-accent/20"
             >
-              Get a quote <ArrowRight className="size-3.5" />
+              hire me <ArrowRight className="size-3.5" />
             </a>
-          </div>
-        </Card>
-
-        <Card>
-          <h3 className="font-mono text-xl font-semibold text-dim">
-            coming soon
-          </h3>
-          <p className="text-sm leading-relaxed text-dim">
-            Slot reserved. Something is always in progress.
-          </p>
-          <div className="mt-auto border border-dashed border-dim/40 px-3 py-2 font-mono text-xs text-dim/60">
-            — in build —
           </div>
         </Card>
       </div>

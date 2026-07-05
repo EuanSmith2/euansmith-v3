@@ -11,7 +11,7 @@ const CONTACT = {
   email: "business.euan@hotmail.com",
   location: "Dublin, Ireland",
   github: "github.com/EuanSmith2",
-  linkedin: "linkedin.com/in/euan-smith",
+  linkedin: "linkedin.com/in/euan-smith-4295123a6",
   web: "euansmith.net",
 };
 
@@ -65,11 +65,13 @@ export default function CV() {
           <Section title="Profile">
             <p>
               Self-taught web developer and AI systems builder, 19, based in Dublin. Two years
-              building and shipping hand-coded websites for local businesses under Forged Websites,
-              achieving consistent 100/100 Lighthouse scores with sub-100kb pages. Independently
-              architected NZT-48, a multi-agent AI orchestration system in Python, running in
-              production daily. Incoming BSc Cybersecurity &amp; Digital Forensics at TU Dublin
-              (Sept 2026); actively pursuing ISC2 CC and TryHackMe Pre-Security path.
+              building and shipping hand-coded websites for local businesses as a freelance
+              developer, achieving consistent 100/100 Lighthouse scores with sub-100kb pages.
+              Independently architected NZT-48, a multi-agent AI orchestration system in Python,
+              running in production daily. Built a factcheck-automation pipeline now running in
+              production at EDMO (European Digital Media Observatory, DCU). Incoming BSc
+              Cybersecurity &amp; Digital Forensics at TU Dublin (Sept 2026); actively pursuing
+              ISC2 CC and TryHackMe Pre-Security path.
             </p>
           </Section>
 
@@ -94,7 +96,7 @@ export default function CV() {
 
               <div>
                 <div className="flex items-baseline justify-between">
-                  <h3 className="font-bold">Forged Websites — Freelance Web Development</h3>
+                  <h3 className="font-bold">Freelance Web Development — Client Sites</h3>
                   <span className="text-xs text-gray-500">
                     HTML · CSS · JS · Next.js · JSON-LD | 2023–present
                   </span>
@@ -111,7 +113,7 @@ export default function CV() {
                 <div className="flex items-baseline justify-between">
                   <h3 className="font-bold">euansmith.net — Personal Portfolio</h3>
                   <span className="text-xs text-gray-500">
-                    Next.js 15 · TypeScript · Tailwind v4 · Three.js · GSAP | 2026
+                    Next.js 16 · TypeScript · Tailwind v4 · Three.js · GSAP | 2026
                   </span>
                 </div>
                 <ul className="mt-1 list-none space-y-0.5 pl-4">
@@ -126,12 +128,13 @@ export default function CV() {
           <Section title="Experience">
             <div>
               <div className="flex items-baseline justify-between">
-                <h3 className="font-bold">EDMO — Automation Intern</h3>
+                <h3 className="font-bold">EDMO (European Digital Media Observatory, DCU) — Automation</h3>
                 <span className="text-xs text-gray-500">Dublin | 2025–present</span>
               </div>
               <ul className="mt-1 list-none space-y-0.5 pl-4">
-                <Li>Developed automation scripts to streamline internal processes</Li>
-                <Li>Worked with Python tooling and data handling in a professional environment</Li>
+                <Li>Built a factcheck-automation pipeline: scrapes TheJournal.ie factchecks, summarises each with the Claude API, and publishes to edmohub.ie via the WordPress REST API</Li>
+                <Li>Cron-scheduled to run unattended on the 1st and 15th of each month; documented and handed to EDMO&apos;s team for staff rollout</Li>
+                <Li>Python throughout — first production system running inside a real EU organisation</Li>
               </ul>
             </div>
           </Section>
