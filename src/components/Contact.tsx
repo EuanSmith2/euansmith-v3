@@ -1,36 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import { Loader2 } from "lucide-react";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
 import { GitHubIcon, TikTokIcon, LinkedInIcon } from "./icons";
 
-// Formspree endpoint lives in env — never an email address in source.
-const ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+const FORM_ID = "mwvdykwe";
 
 const inputCls =
-  "w-full min-h-11 rounded-sm border border-line bg-card px-4 py-3 text-sm text-fg placeholder:text-dim focus:border-accent/60";
+  "w-full min-h-11 rounded-sm border border-line bg-card px-4 py-3 text-sm text-fg placeholder:text-dim focus:border-accent/60 focus:outline-none";
+
+const errCls = "mt-1 font-mono text-xs text-[#ff5f57]";
 
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
-  );
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!ENDPOINT) return;
-    setStatus("sending");
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(e.currentTarget),
-      });
-      setStatus(res.ok ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
-  }
+  const [state, handleSubmit] = useForm(FORM_ID);
 
   return (
     <Reveal id="contact" className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
@@ -39,21 +22,25 @@ export default function Contact() {
       </SplitHeading>
 
       <Item className="mt-12 max-w-xl">
-        {status === "sent" ? (
+        {state.succeeded ? (
           <p
             role="status"
             className="border border-accent/40 bg-accent/10 px-5 py-4 font-mono text-sm text-accent"
           >
             ✓ received — I reply within a day.
           </p>
-        ) : ENDPOINT ? (
-          <form onSubmit={onSubmit} className="space-y-4">
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input type="hidden" name="_subject" value="New message from euansmith.net" />
+
             <div>
               <label htmlFor="name" className="mb-1.5 block font-mono text-xs text-muted">
                 name
               </label>
               <input id="name" name="name" required autoComplete="name" className={inputCls} />
+              <ValidationError field="name" prefix="Name" errors={state.errors} className={errCls} />
             </div>
+
             <div>
               <label htmlFor="email" className="mb-1.5 block font-mono text-xs text-muted">
                 email
@@ -66,24 +53,25 @@ export default function Contact() {
                 autoComplete="email"
                 className={inputCls}
               />
+              <ValidationError field="email" prefix="Email" errors={state.errors} className={errCls} />
             </div>
+
             <div>
               <label htmlFor="message" className="mb-1.5 block font-mono text-xs text-muted">
                 what you need
               </label>
               <textarea id="message" name="message" required rows={4} className={inputCls} />
+              <ValidationError field="message" prefix="Message" errors={state.errors} className={errCls} />
             </div>
-            {status === "error" && (
-              <p role="alert" className="font-mono text-sm text-[#ff5f57]">
-                didn&apos;t send — try again, or reach me on GitHub below.
-              </p>
-            )}
+
+            <ValidationError errors={state.errors} className={errCls} />
+
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={state.submitting}
               className="group inline-flex min-h-11 items-center gap-2 border border-accent/40 bg-accent/10 px-6 py-3 font-mono text-sm text-accent transition-colors duration-300 hover:bg-accent/20 disabled:opacity-50"
             >
-              {status === "sending" ? (
+              {state.submitting ? (
                 <>
                   <Loader2 className="size-4 animate-spin" /> sending
                 </>
@@ -92,14 +80,10 @@ export default function Contact() {
               )}
             </button>
           </form>
-        ) : (
-          <p className="border border-line bg-card px-5 py-4 font-mono text-sm text-muted">
-            form is warming up — reach me on GitHub or TikTok below.
-          </p>
         )}
       </Item>
 
-      <Item className="mt-12 grid grid-cols-3 gap-4 sm:max-w-xl">
+      <Item className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:max-w-xl">
         {[
           {
             href: "https://github.com/EuanSmith2",
