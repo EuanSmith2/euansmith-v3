@@ -90,12 +90,17 @@ export default function Services() {
         {TIERS.map((tier) => (
           <Item
             key={tier.name}
-            className={`flex flex-col gap-5 rounded-sm border p-6 ${
+            className={`relative flex flex-col gap-5 rounded-sm border p-6 transition-shadow duration-300 ${
               tier.featured
-                ? "border-accent/40 bg-accent/[0.04]"
+                ? "border-accent/40 bg-accent/[0.04] shadow-[0_0_40px_-12px_rgba(0,255,136,0.15)] hover:shadow-[0_0_60px_-8px_rgba(0,255,136,0.22)]"
                 : "border-line bg-card"
             }`}
           >
+            {tier.featured && (
+              <span className="absolute right-4 top-4 border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] text-accent">
+                most popular
+              </span>
+            )}
             <h3 className="font-mono text-sm uppercase tracking-widest text-muted">
               {tier.name}
             </h3>

@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Contributions from "@/components/Contributions";
 import Projects from "@/components/Projects";
+import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 
@@ -28,6 +29,7 @@ export default function Home() {
       />
       <Hero />
       <About contributions={<Contributions />} />
+      <Marquee />
       <Projects />
       <Services />
       <Contact />

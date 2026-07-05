@@ -2,21 +2,22 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, Download } from "lucide-react";
 import { EASE } from "@/lib/utils";
 
 const HeroField = dynamic(() => import("./HeroField"), { ssr: false });
 
-// the terminal script: [text, isCommand]
 const SCRIPT: Array<[string, boolean]> = [
   ["whoami", true],
   ["euan smith — builder of things that shouldn't exist", false],
-  ["./projects --list", true],
-  ["NZT-48  |  Forged Websites  |  more below", false],
+  ["./skills --list", true],
+  ["web dev · AI systems · cybersecurity · Dublin", false],
+  ["./projects --recent", true],
+  ["NZT-48  |  Forged Websites  |  this site", false],
+  ["./status", true],
+  ["available for projects  ·  reply < 24h", false],
 ];
 
-/** Types with human timing variance (30–95ms per char, longer pauses on
- *  spaces/punctuation) — not robotic equal spacing. */
 export default function Hero() {
   const [lines, setLines] = useState<Array<[string, boolean]>>([]);
   const [done, setDone] = useState(false);
@@ -32,7 +33,6 @@ export default function Hero() {
       setDone(true);
       return;
     }
-    // particle field mounts after first paint — hero text owns the LCP
     const idle = (cb: () => void) =>
       "requestIdleCallback" in window
         ? requestIdleCallback(cb, { timeout: 2500 })
@@ -45,21 +45,19 @@ export default function Hero() {
       for (const [text, isCmd] of SCRIPT) {
         if (cancelled) return;
         if (isCmd) {
-          // commands type char by char
           let acc = "";
           setLines((l) => [...l, ["", true]]);
           for (const ch of text) {
             if (cancelled) return;
             acc += ch;
             setLines((l) => [...l.slice(0, -1), [acc, true]]);
-            await wait(30 + Math.random() * 65 + (ch === " " ? 40 : 0));
+            await wait(28 + Math.random() * 60 + (ch === " " ? 35 : 0));
           }
-          await wait(220);
+          await wait(200);
         } else {
-          // output prints instantly, like a real shell
-          await wait(90);
+          await wait(80);
           setLines((l) => [...l, [text, false]]);
-          await wait(300);
+          await wait(260);
         }
       }
       setDone(true);
@@ -70,18 +68,40 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="scanlines relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6">
+    <section className="scanlines relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 pt-16">
       {showField && (
         <div className="absolute inset-0" aria-hidden>
           <HeroField />
         </div>
       )}
 
+      {/* ambient glow behind terminal */}
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        aria-hidden
+      >
+        <div className="h-[40vh] w-[60vw] rounded-full bg-accent/[0.04] blur-3xl" />
+      </div>
+
       <div className="relative z-10 w-full max-w-3xl font-mono">
-        {/* fixed height reserves space — zero layout shift while typing */}
+        {/* live availability badge */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
+          className="mb-6 flex items-center gap-2 text-xs text-muted"
+          aria-label="currently available for projects"
+        >
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+            <span className="relative inline-flex size-2 rounded-full bg-accent" />
+          </span>
+          available for projects · dublin, ireland · 2026
+        </motion.div>
+
         <div
-          className="min-h-[10.5rem] text-[clamp(0.95rem,0.8rem+0.7vw,1.35rem)] leading-relaxed sm:min-h-[9rem]"
-          aria-label="terminal introduction: euan smith — builder of things that shouldn't exist. projects: NZT-48, Forged Websites"
+          className="min-h-[16rem] text-[clamp(0.9rem,0.75rem+0.65vw,1.25rem)] leading-relaxed sm:min-h-[14rem]"
+          aria-label="terminal introduction: euan smith — web developer and AI builder. skills: web development, AI systems, cybersecurity. projects: NZT-48, Forged Websites. status: available for projects"
         >
           {lines.map(([text, isCmd], i) => (
             <p key={i} className={isCmd ? "text-fg" : "text-code"}>
@@ -119,6 +139,13 @@ export default function Hero() {
             className="group inline-flex min-h-11 items-center gap-2 border border-accent/40 bg-accent/10 px-5 py-3 text-sm text-accent transition-colors duration-300 hover:bg-accent/20"
           >
             [ hire me <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" /> ]
+          </a>
+          <a
+            href="/euan-smith-cv.pdf"
+            download
+            className="group inline-flex min-h-11 items-center gap-2 border border-line px-5 py-3 text-sm text-muted transition-colors duration-300 hover:text-fg"
+          >
+            [ cv <Download className="size-4" /> ]
           </a>
         </motion.div>
       </div>
