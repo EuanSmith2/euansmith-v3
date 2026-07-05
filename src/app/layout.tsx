@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 // next/font: self-hosted at build, preloaded, zero layout shift on swap
@@ -55,6 +56,7 @@ export default function RootLayout({
         >
           skip to content
         </a>
+        <ScrollProgress />
         <Nav />
         <SmoothScroll>{children}</SmoothScroll>
         <Cursor />

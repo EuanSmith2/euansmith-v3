@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 const JSONLD = {
   "@context": "https://schema.org",
@@ -15,6 +16,7 @@ const JSONLD = {
   address: { "@type": "PostalAddress", addressLocality: "Dublin", addressCountry: "IE" },
   sameAs: [
     "https://github.com/EuanSmith2",
+    "https://www.linkedin.com/in/euan-smith-4295123a6/",
     "https://www.tiktok.com/@euan_smith",
   ],
   knowsAbout: ["Web Development", "AI Systems", "Cybersecurity"],
@@ -33,6 +35,7 @@ export default function Home() {
       <Projects />
       <Services />
       <Contact />
+      <Footer />
     </main>
   );
 }
