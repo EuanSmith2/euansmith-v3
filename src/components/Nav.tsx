@@ -54,7 +54,7 @@ export default function Nav() {
       )}
     >
       <a
-        href="#"
+        href="#main"
         className="text-fg/70 transition-colors duration-300 hover:text-fg"
       >
         euan smith
