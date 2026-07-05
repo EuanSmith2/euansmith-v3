@@ -17,8 +17,8 @@ export default function Contact() {
 
   return (
     <Reveal id="contact" className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
-      <SplitHeading className="font-mono text-[length:var(--text-title)] font-semibold">
-        {"> contact"}
+      <SplitHeading className="font-sans text-[length:var(--text-title)] font-semibold tracking-tight">
+        get in touch
       </SplitHeading>
 
       <Item className="mt-12 max-w-xl">
@@ -92,9 +92,9 @@ export default function Contact() {
             icon: <GitHubIcon className="size-5" />,
           },
           {
-            href: "https://www.linkedin.com/in/euan-smith",
+            href: "https://www.linkedin.com/in/euan-smith-4295123a6/",
             label: "LinkedIn",
-            handle: "euan-smith",
+            handle: "euan smith",
             icon: <LinkedInIcon className="size-5" />,
           },
           {
@@ -121,9 +121,6 @@ export default function Contact() {
         ))}
       </Item>
 
-      <footer className="mt-20 border-t border-line pt-6 font-mono text-xs text-dim">
-        <p>euan smith · dublin · {new Date().getFullYear()} · hand-coded, obviously</p>
-      </footer>
     </Reveal>
   );
 }

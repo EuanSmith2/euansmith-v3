@@ -79,8 +79,8 @@ export default function Services() {
 
   return (
     <Reveal id="services" className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
-      <SplitHeading className="font-mono text-[length:var(--text-title)] font-semibold">
-        {"> services"}
+      <SplitHeading className="font-sans text-[length:var(--text-title)] font-semibold tracking-tight">
+        services
       </SplitHeading>
       <p className="mt-4 max-w-xl text-muted">
         Hand-coded. Fast. Yours outright — no platform fees, no lock-in.

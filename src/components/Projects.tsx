@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { FileText, ArrowRight } from "lucide-react";
 import { GitHubIcon } from "./icons";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
 import NztTerminal from "./NztTerminal";
+import RepoStats, { RepoStatsSkeleton } from "./RepoStats";
 
 function Pills({ items }: { items: string[] }) {
   return (
@@ -34,7 +36,7 @@ export default function Projects() {
   return (
     <Reveal id="projects" className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
       <SplitHeading className="font-mono text-[length:var(--text-title)] font-semibold">
-        {"> projects"}
+        {"projects/"}
       </SplitHeading>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -49,6 +51,9 @@ export default function Projects() {
             <li>Private config overlay — gitignored secrets, clean public repo</li>
           </ul>
           <NztTerminal />
+          <Suspense fallback={<RepoStatsSkeleton />}>
+            <RepoStats repo="EuanSmith2/NZT-48" />
+          </Suspense>
           <Pills items={["Python", "Claude API", "Telegram", "SQLite", "MCP"]} />
           <div className="mt-auto flex gap-3">
             <a
