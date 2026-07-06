@@ -113,14 +113,16 @@ export default function Services() {
                 : "border-line bg-card"
             }`}
           >
-            {tier.featured && (
-              <span className="absolute right-4 top-4 border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] text-accent">
-                most popular
-              </span>
-            )}
-            <h3 className="font-mono text-sm uppercase tracking-widest text-muted">
-              {tier.name}
-            </h3>
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-mono text-sm uppercase tracking-widest text-muted">
+                {tier.name}
+              </h3>
+              {tier.featured && (
+                <span className="shrink-0 border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] text-accent">
+                  most popular
+                </span>
+              )}
+            </div>
             <Price value={tier.price} />
             <ul className="space-y-2.5 text-sm text-fg/85">
               {tier.rows.map((r) => (

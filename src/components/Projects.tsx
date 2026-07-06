@@ -81,7 +81,7 @@ export default function Projects() {
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <Card>
           <h3 className="font-mono text-xl font-semibold text-fg">
-            EDMO — factcheck automation
+            EDMO <span aria-label="European Union" role="img" className="opacity-60">🇪🇺</span> — factcheck automation
           </h3>
           <p className="font-mono text-[11px] uppercase tracking-wider text-accent/80">
             European Digital Media Observatory · DCU · in production
