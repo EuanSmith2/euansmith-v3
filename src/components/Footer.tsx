@@ -22,13 +22,18 @@ export default function Footer() {
 
   return (
     <footer className="mx-auto max-w-6xl border-t border-line px-6 py-8 font-mono text-xs text-dim">
-      <div className="flex flex-col gap-1.5 sm:flex-row sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p>
           euan smith · dublin{" "}
           <span className="tabular-nums">{now ? `· ${now} IST` : ""}</span> ·{" "}
           {new Date().getFullYear()}
         </p>
-        <p>designed &amp; hand-coded by me · Next.js on Vercel</p>
+        <nav className="flex gap-5" aria-label="footer">
+          <a href="/notes" className="transition-colors duration-300 hover:text-accent">notes</a>
+          <a href="/cv" className="transition-colors duration-300 hover:text-accent">cv</a>
+          <span className="text-line">·</span>
+          <span>hand-coded · Next.js on Vercel</span>
+        </nav>
       </div>
     </footer>
   );

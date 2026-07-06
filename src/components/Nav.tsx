@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -81,6 +82,11 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <Link href="/notes" className="text-muted transition-colors duration-300 hover:text-fg">
+              notes
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -121,6 +127,16 @@ export default function Nav() {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                href="/notes"
+                onClick={() => setOpen(false)}
+                className="block text-2xl text-muted transition-colors duration-300"
+                tabIndex={open ? 0 : -1}
+              >
+                notes
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
