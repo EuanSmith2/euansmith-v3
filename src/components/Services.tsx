@@ -20,7 +20,7 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Basic",
-    price: 150,
+    price: 120,
     rows: [
       "3–5 hand-coded pages",
       "Contact form + click-to-call",
@@ -31,7 +31,7 @@ const TIERS: Tier[] = [
   },
   {
     name: "Booking / Menu",
-    price: 300,
+    price: 170,
     featured: true,
     rows: [
       "Everything in Basic",
@@ -137,7 +137,7 @@ export default function Services() {
       </div>
 
       <p className="mt-8 max-w-2xl font-mono text-xs leading-relaxed text-muted">
-        + €30–50/mo optional — hosting, updates &amp; priority support. Every job
+        + €20/mo optional — hosting, updates &amp; priority support. Every job
         is different, so the real number depends on what you need; the quote is
         free and there&apos;s no obligation.
       </p>

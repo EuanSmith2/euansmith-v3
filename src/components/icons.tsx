@@ -8,13 +8,7 @@ export function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-export function TryHackMeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M10.705 0C7.54 0 4.902 2.285 4.37 5.29A4.526 4.526 0 0 0 0 9.792a4.526 4.526 0 0 0 4.526 4.526h6.179V0zm2.59 0v14.318h6.18A4.526 4.526 0 0 0 24 9.792a4.526 4.526 0 0 0-4.37-4.502C19.098 2.285 16.46 0 13.295 0zM4.526 15.682A4.526 4.526 0 0 0 0 20.208a4.526 4.526 0 0 0 4.526 4.526h6.179V15.682zm8.769 0V24.734h6.18A4.526 4.526 0 0 0 24 20.208a4.526 4.526 0 0 0-4.526-4.526z" />
-    </svg>
-  );
-}
+
 export function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>

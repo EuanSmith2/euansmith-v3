@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
-import { TryHackMeIcon } from "./icons";
+import { Shield } from "lucide-react";
 
 const SKILLS = [
   { label: "Languages", value: "HTML · CSS · JS · TypeScript · Python" },
@@ -58,7 +58,7 @@ export default function About({
             className="group block w-fit border border-line bg-card p-4 transition-colors duration-300 hover:border-accent/40"
           >
             <div className="mb-3 flex items-center gap-2">
-              <TryHackMeIcon className="size-4 text-[#e8412a] transition-colors duration-300 group-hover:text-[#ff5f4a]" />
+              <Shield className="size-4 text-[#e8412a] transition-colors duration-300 group-hover:text-[#ff5f4a]" />
               <span className="font-mono text-xs text-muted">TryHackMe</span>
             </div>
             <div className="space-y-1 font-mono text-xs">

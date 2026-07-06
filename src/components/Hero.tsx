@@ -15,7 +15,7 @@ const SCRIPT: Array<[string, boolean]> = [
   ["./projects --recent", true],
   ["NZT-48  |  client websites  |  this site", false],
   ["./status", true],
-  ["19 · self-taught since 14 · TU Dublin cybersecurity, Sept", false],
+  ["19 · self-taught since 14 · TU Dublin cybersecurity, Sept 2026", false],
 ];
 
 export default function Hero() {
