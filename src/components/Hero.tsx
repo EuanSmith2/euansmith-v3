@@ -9,13 +9,13 @@ const HeroField = dynamic(() => import("./HeroField"), { ssr: false });
 
 const SCRIPT: Array<[string, boolean]> = [
   ["whoami", true],
-  ["euan smith — builder of things that shouldn't exist", false],
+  ["euan smith — I hand-code websites and build the AI that runs my day", false],
   ["./skills --list", true],
   ["web dev · AI systems · cybersecurity · Dublin", false],
   ["./projects --recent", true],
-  ["NZT-48  |  Forged Websites  |  this site", false],
+  ["NZT-48  |  client websites  |  this site", false],
   ["./status", true],
-  ["available for projects  ·  reply < 24h", false],
+  ["19 · self-taught since 14 · TU Dublin cybersecurity, Sept", false],
 ];
 
 export default function Hero() {
@@ -100,11 +100,12 @@ export default function Hero() {
         </motion.div>
 
         <div
+          role="img"
           className="min-h-[16rem] text-[clamp(0.9rem,0.75rem+0.65vw,1.25rem)] leading-relaxed sm:min-h-[14rem]"
-          aria-label="terminal introduction: euan smith — web developer and AI builder. skills: web development, AI systems, cybersecurity. projects: NZT-48, Forged Websites. status: available for projects"
+          aria-label="Euan Smith — I hand-code websites and build AI systems. Web dev, AI systems, cybersecurity, Dublin. 19, self-taught, incoming TU Dublin cybersecurity."
         >
           {lines.map(([text, isCmd], i) => (
-            <p key={i} className={isCmd ? "text-fg" : "text-code"}>
+            <p key={i} aria-hidden className={isCmd ? "text-fg" : "text-code"}>
               <span className="select-none text-accent">▎ </span>
               {isCmd && <span className="text-muted">$ </span>}
               {text}

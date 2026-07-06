@@ -24,10 +24,9 @@ export default async function Contributions() {
     if (res.ok) {
       const data = await res.json();
       days = (data.contributions as Day[]).slice(-182); // ~26 weeks fits the column
-      total = Object.values(data.total as Record<string, number>).reduce(
-        (a, b) => a + b,
-        0,
-      );
+      // total must describe what's actually shown, not the full year (the grid
+      // renders 6 months) — picture and number agree
+      total = days.reduce((a, d) => a + d.count, 0);
     }
   } catch {
     /* fall through to placeholder */
@@ -50,7 +49,7 @@ export default async function Contributions() {
         role="img"
         aria-label={
           total
-            ? `GitHub contribution graph: ${total} contributions in the last year`
+            ? `GitHub contribution graph: ${total} contributions in the last 6 months`
             : "GitHub contribution graph"
         }
       >
@@ -67,7 +66,7 @@ export default async function Contributions() {
       </div>
       <figcaption className="mt-3 font-mono text-xs text-muted">
         {total > 0
-          ? `${total.toLocaleString("en-IE")} contributions, last 12 months`
+          ? `${total.toLocaleString("en-IE")} contributions, last 6 months`
           : "github.com/EuanSmith2"}
       </figcaption>
     </figure>

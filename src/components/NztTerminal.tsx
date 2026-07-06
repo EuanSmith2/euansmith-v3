@@ -35,7 +35,7 @@ export default function NztTerminal() {
         <span className="size-2.5 rounded-full bg-[#ff5f57]" aria-hidden />
         <span className="size-2.5 rounded-full bg-[#febc2e]" aria-hidden />
         <span className="size-2.5 rounded-full bg-[#28c840]" aria-hidden />
-        <span className="ml-2 text-dim">nzt-48 — live</span>
+        <span className="ml-2 text-dim">nzt-48 — sample log</span>
       </div>
       <div className="min-h-[6rem] px-3 py-2.5" aria-live="off">
         {FEED[frame].map((line) => (

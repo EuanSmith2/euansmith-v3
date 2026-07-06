@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Contributions from "@/components/Contributions";
 import Projects from "@/components/Projects";
-import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -27,11 +26,13 @@ export default function Home() {
     <main id="main">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }}
+        // escape < so a value can never break out of the script element
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(JSONLD).replace(/</g, "\\u003c"),
+        }}
       />
       <Hero />
       <About contributions={<Contributions />} />
-      <Marquee />
       <Projects />
       <Services />
       <Contact />

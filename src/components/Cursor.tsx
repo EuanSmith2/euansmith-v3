@@ -19,20 +19,38 @@ export default function Cursor() {
 
     let x = -100, y = -100, rx = -100, ry = -100, scale = 1, raf = 0;
 
+    // cache card centres — measuring layout on every pointermove forces a
+    // synchronous reflow per pixel; instead we measure on scroll/resize only
+    let cards: { el: HTMLElement; cx: number; cy: number }[] = [];
+    const measure = () => {
+      cards = [...document.querySelectorAll<HTMLElement>(".border-trace")].map(
+        (el) => {
+          const r = el.getBoundingClientRect();
+          return { el, cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
+        },
+      );
+    };
+    let measuring = false;
+    const remeasure = () => {
+      if (measuring) return;
+      measuring = true;
+      requestAnimationFrame(() => {
+        measure();
+        measuring = false;
+      });
+    };
+    measure();
+
     const move = (e: PointerEvent) => {
       x = e.clientX;
       y = e.clientY;
       const hit = (e.target as Element | null)?.closest?.(INTERACTIVE);
       scale = hit ? 1.5 : 1;
-
-      // update --trace on every .border-trace element based on cursor angle from card center
-      document.querySelectorAll<HTMLElement>(".border-trace").forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const angle = Math.atan2(e.clientY - cy, e.clientX - cx) * (180 / Math.PI) + 90;
-        el.style.setProperty("--trace", `${angle}deg`);
-      });
+      // read only cached centres — no getBoundingClientRect in the hot path
+      for (const c of cards) {
+        const angle = Math.atan2(y - c.cy, x - c.cx) * (180 / Math.PI) + 90;
+        c.el.style.setProperty("--trace", `${angle}deg`);
+      }
     };
 
     const loop = () => {
@@ -46,10 +64,14 @@ export default function Cursor() {
     };
 
     window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("scroll", remeasure, { passive: true });
+    window.addEventListener("resize", remeasure, { passive: true });
     raf = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener("pointermove", move);
+      window.removeEventListener("scroll", remeasure);
+      window.removeEventListener("resize", remeasure);
       cancelAnimationFrame(raf);
       document.documentElement.classList.remove("cursor-live");
     };

@@ -20,9 +20,9 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Basic",
-    price: 400,
+    price: 150,
     rows: [
-      "4–5 hand-coded pages",
+      "3–5 hand-coded pages",
       "Contact form + click-to-call",
       "Mobile-first, 100 Lighthouse",
       "Google-ready — SEO + sitemap",
@@ -31,7 +31,7 @@ const TIERS: Tier[] = [
   },
   {
     name: "Booking / Menu",
-    price: 650,
+    price: 300,
     featured: true,
     rows: [
       "Everything in Basic",
@@ -43,7 +43,7 @@ const TIERS: Tier[] = [
   },
   {
     name: "Online Store",
-    price: 900,
+    price: 500,
     rows: [
       "Everything in Booking",
       "Product catalogue + cart",

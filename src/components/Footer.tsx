@@ -28,7 +28,7 @@ export default function Footer() {
           <span className="tabular-nums">{now ? `· ${now} IST` : ""}</span> ·{" "}
           {new Date().getFullYear()}
         </p>
-        <p>hand-coded — no Squarespace, no Webflow, no page builders</p>
+        <p>designed &amp; hand-coded by me · Next.js on Vercel</p>
       </div>
     </footer>
   );

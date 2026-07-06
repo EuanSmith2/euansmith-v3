@@ -41,7 +41,7 @@ export default function Image() {
             color: "#00ff88",
           }}
         >
-          builder of things that shouldn&apos;t exist
+          I hand-code websites &amp; build AI systems
         </div>
         <div
           style={{

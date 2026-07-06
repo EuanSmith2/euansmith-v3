@@ -141,15 +141,6 @@ body {
   }
 }
 
-/* tech stack marquee */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee-track {
-  animation: marquee 28s linear infinite;
-}
-
 /* reduced motion: skip to final state, everywhere, instantly */
 @media (prefers-reduced-motion: reduce) {
   *,

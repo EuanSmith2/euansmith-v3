@@ -3,7 +3,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import { Loader2 } from "lucide-react";
 import SplitHeading from "./SplitHeading";
 import { Reveal, Item } from "./Section";
-import { GitHubIcon, TikTokIcon, LinkedInIcon } from "./icons";
+import SocialDock from "./SocialDock";
 
 const FORM_ID = "mwvdykwe";
 
@@ -20,14 +20,19 @@ export default function Contact() {
       <SplitHeading className="font-sans text-[length:var(--text-title)] font-semibold tracking-tight">
         get in touch
       </SplitHeading>
+      <p className="mt-4 max-w-xl text-muted">
+        Got a business that needs a site, or just want to talk shop? Tell me
+        what you&apos;re after — I read every message myself and usually reply
+        the same day.
+      </p>
 
-      <Item className="mt-12 max-w-xl">
+      <Item className="mt-10 max-w-xl">
         {state.succeeded ? (
           <p
             role="status"
             className="border border-accent/40 bg-accent/10 px-5 py-4 font-mono text-sm text-accent"
           >
-            ✓ received — I reply within a day.
+            [ received ] — cheers, I&apos;ll get back to you within a day.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -83,44 +88,12 @@ export default function Contact() {
         )}
       </Item>
 
-      <Item className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:max-w-xl">
-        {[
-          {
-            href: "https://github.com/EuanSmith2",
-            label: "GitHub",
-            handle: "EuanSmith2",
-            icon: <GitHubIcon className="size-5" />,
-          },
-          {
-            href: "https://www.linkedin.com/in/euan-smith-4295123a6/",
-            label: "LinkedIn",
-            handle: "euan smith",
-            icon: <LinkedInIcon className="size-5" />,
-          },
-          {
-            href: "https://www.tiktok.com/@euan_smith",
-            label: "TikTok",
-            handle: "@euan_smith",
-            icon: <TikTokIcon className="size-5" />,
-          },
-        ].map(({ href, label, handle, icon }) => (
-          <a
-            key={href}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${label} — ${handle}`}
-            className="group flex flex-col gap-2.5 border border-line bg-card p-4 transition-colors duration-300 hover:border-accent/40 hover:bg-accent/[0.03]"
-          >
-            <span className="text-muted transition-colors duration-300 group-hover:text-accent">
-              {icon}
-            </span>
-            <span className="font-mono text-xs text-muted">{label}</span>
-            <span className="font-mono text-[11px] text-dim">{handle}</span>
-          </a>
-        ))}
+      <Item className="mt-14">
+        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-dim">
+          or find me here
+        </p>
+        <SocialDock />
       </Item>
-
     </Reveal>
   );
 }

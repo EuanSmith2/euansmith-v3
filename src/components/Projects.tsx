@@ -29,8 +29,8 @@ function Card({ children }: { children: React.ReactNode }) {
   );
 }
 
-const linkCls =
-  "inline-flex min-h-11 items-center gap-1.5 font-mono text-sm text-muted transition-colors duration-300 hover:text-accent";
+const btnCls =
+  "inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent";
 
 export default function Projects() {
   return (
@@ -39,42 +39,46 @@ export default function Projects() {
         {"projects/"}
       </SplitHeading>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
-        <Card>
-          <h3 className="font-mono text-xl font-semibold text-fg">NZT-48</h3>
+      {/* flagship gets the weight — full-width feature, two smaller below */}
+      <Item className="border-trace mt-12 grid gap-8 rounded-sm p-6 lg:grid-cols-[1.1fr_1fr] lg:p-8">
+        <div className="flex flex-col gap-5">
+          <div>
+            <h3 className="font-mono text-2xl font-semibold text-fg">NZT-48</h3>
+            <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-accent/80">
+              personal AI system · running daily
+            </p>
+          </div>
+          <p className="max-w-md leading-relaxed text-fg/90">
+            I kept losing the thread between client work, my notes, and cold
+            outreach — so I built something that holds all of it and briefs me at
+            07:30 before I&apos;m even up. It&apos;s been quietly running my day
+            ever since.
+          </p>
           <ul className="space-y-1 font-mono text-xs text-muted">
-            <li>7 specialised AI agents (briefing · research · business · TTS)</li>
-            <li>Obsidian vault memory structure + daily knowledge capture</li>
-            <li>Custom Telegram bot → Claude Code remote control</li>
-            <li>Automated 07:30 brief via push notification</li>
-            <li>Animated terminal feed displaying live agent activity</li>
-            <li>Private config overlay — gitignored secrets, clean public repo</li>
+            <li>7 specialised agents — briefing, research, business, capture, TTS</li>
+            <li>Obsidian vault as memory; every write goes through an approval gate</li>
+            <li>Telegram bot → Claude Code headless, so I run it from my phone</li>
+            <li>Private config overlay — secrets gitignored, the public repo stays clean</li>
           </ul>
+          <Pills items={["Python", "Claude API", "Telegram", "SQLite", "MCP"]} />
+          <div className="mt-auto flex gap-3">
+            <a href="https://github.com/EuanSmith2/NZT-48" className={btnCls} target="_blank" rel="noopener noreferrer">
+              <GitHubIcon className="size-3.5" /> GitHub
+            </a>
+            <a href="https://github.com/EuanSmith2/NZT-48#readme" className={btnCls} target="_blank" rel="noopener noreferrer">
+              <FileText className="size-3.5" /> README
+            </a>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
           <NztTerminal />
           <Suspense fallback={<RepoStatsSkeleton />}>
             <RepoStats repo="EuanSmith2/NZT-48" />
           </Suspense>
-          <Pills items={["Python", "Claude API", "Telegram", "SQLite", "MCP"]} />
-          <div className="mt-auto flex gap-3">
-            <a
-              href="https://github.com/EuanSmith2/NZT-48"
-              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHubIcon className="size-3.5" /> GitHub
-            </a>
-            <a
-              href="https://github.com/EuanSmith2/NZT-48#readme"
-              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FileText className="size-3.5" /> README
-            </a>
-          </div>
-        </Card>
+        </div>
+      </Item>
 
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
         <Card>
           <h3 className="font-mono text-xl font-semibold text-fg">
             EDMO — factcheck automation
@@ -82,25 +86,20 @@ export default function Projects() {
           <p className="font-mono text-[11px] uppercase tracking-wider text-accent/80">
             European Digital Media Observatory · DCU · in production
           </p>
-          <ul className="space-y-1 font-mono text-xs text-muted">
-            <li>Scrapes TheJournal.ie factchecks → Claude summaries → publishes to edmohub.ie via WordPress REST API</li>
-            <li>Cron-scheduled, unattended — runs 1st &amp; 15th of the month</li>
-            <li>Built end to end and handed to EDMO&apos;s team for staff rollout</li>
-            <li>My first production system running inside a real EU organisation</li>
-          </ul>
+          <p className="leading-relaxed text-fg/90">
+            My first system running inside a real EU organisation — it reads the
+            latest factchecks, summarises each one, and posts them to their site
+            on its own. Built end to end and handed to their team.
+          </p>
           <div className="rounded-sm border border-line bg-bg p-4 font-mono text-xs leading-6 text-code/90">
             <p>source ▸ thejournal.ie/factcheck</p>
             <p>summarise ▸ claude</p>
             <p>publish ▸ edmohub.ie (wp-rest)</p>
+            <p>schedule ▸ cron · 1st &amp; 15th</p>
           </div>
           <Pills items={["Python", "Claude API", "WordPress REST", "Cron"]} />
           <div className="mt-auto flex gap-3">
-            <a
-              href="https://edmohub.ie"
-              className={"inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://edmohub.ie" className={btnCls} target="_blank" rel="noopener noreferrer">
               edmohub.ie <ArrowRight className="size-3.5" />
             </a>
           </div>
@@ -108,28 +107,25 @@ export default function Projects() {
 
         <Card>
           <h3 className="font-mono text-xl font-semibold text-fg">
-            client websites
+            client work
           </h3>
+          <p className="leading-relaxed text-fg/90">
+            My first paying client site — a personal brand site, hand-coded start
+            to finish. She owns the code outright; no builder, no monthly fee.
+          </p>
           <ul className="space-y-1 font-mono text-xs text-muted">
-            <li>Hand-coded for local businesses — no page builders, no WordPress, no templates</li>
-            <li>100/100 Lighthouse across performance · a11y · SEO · best practices</li>
+            <li>100/100 Lighthouse — performance, a11y, SEO, best practices</li>
             <li>Sub-100kb pages, semantic markup, JSON-LD structured data</li>
-            <li>Full ownership handed over — the client owns the code, no platform fees</li>
+            <li>Deployed and handed over — the client owns everything</li>
           </ul>
           <div className="rounded-sm border border-line bg-bg p-4 font-mono text-xs leading-6 text-code/90">
             <p>lighthouse --all ▸ 100</p>
             <p>page weight ▸ &lt;100kb</p>
-            <p>wordpress ▸ not found</p>
           </div>
           <Pills items={["HTML", "CSS", "JS", "Next.js", "JSON-LD"]} />
           <div className="mt-auto flex gap-3">
-            <a
-              href="https://ayeishalhaine.com"
-              className="inline-flex min-h-9 items-center gap-1.5 border border-line bg-card px-3 py-2 font-mono text-xs text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              live site <ArrowRight className="size-3.5" />
+            <a href="https://ayeishalhaine.com" className={btnCls} target="_blank" rel="noopener noreferrer">
+              ayeishalhaine.com <ArrowRight className="size-3.5" />
             </a>
             <a
               href="#contact"
